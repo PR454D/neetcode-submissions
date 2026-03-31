@@ -1,0 +1,29 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) return false;
+        // O(n) space soln
+        // Map<Character, Integer> countS = new HashMap<>();
+        // Map<Character, Integer> countT = new HashMap<>();
+
+        // for (int i = 0; i < s.length(); i++) {
+        //     countS.put(s.charAt(i), countS.getOrDefault(s.charAt(i), 0) + 1);
+        //     countT.put(t.charAt(i), countT.getOrDefault(t.charAt(i), 0) + 1);
+        // }
+        // for (int c = 0; c < countS.entrySet().size(); c++) {
+        //     if (countS.get(c) != countT.getOrDefault(c, 0)) return false;
+        // }
+        // return true;
+
+
+        // constant space soln
+        int[] count = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            count[s.charAt(i) - 'a']++;
+            count[t.charAt(i) - 'a']--;
+        }
+        for (int i: count) {
+            if (i != 0) return false;
+        }
+        return true;
+    }
+}
